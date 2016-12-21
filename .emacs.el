@@ -54,7 +54,12 @@
   :config
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode))
+  (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+  :bind (:map haskell-cabal-mode-map
+	      ("C-`" . haskell-interactive-bring)
+	      ("C-c C-k" . haskell-interactive-mode-clear)
+	      ("C-c C-c" . haskell-process-cabal-build)
+	      ("C-c c" . haskell-process-cabal)))
 
 (use-package ido
   :init (ido-mode 1))
