@@ -23,12 +23,8 @@
 
 
 (use-package magit
-	     :bind ("<f7>" . magit-status)
-	     :config
-	     (use-package magit-gh-pulls
-			  :disabled
-			  :config
-			  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)))
+  :bind (("<f7>" . magit-status)
+	 ("M-<f7>" . magit-file-popup)))
 
 (use-package csharp-mode
   :mode "\.cs$"
@@ -69,7 +65,9 @@
 	 ("<f9> c" . org-capture)
 	 ("<f9> l" . org-store-link))
   :config
-  (setq org-default-notes-file (concat org-directory "/xamarin.org")))
+  (setq org-default-notes-file (concat org-directory "/xamarin.org"))
+  :init
+  (add-hook 'org-mode-hook 'flyspell-mode t))
 
 (put 'narrow-to-region 'disabled nil)
 
