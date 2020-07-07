@@ -24,15 +24,29 @@
 
 (use-package magit
   :bind (("<f7>" . magit-status)
-	 ("M-<f7>" . magit-file-popup)))
+	 ("M-<f7>" . magit-file-popup))
+  ;; The below doesn't work because the submodule code in Magit doesn't know about
+  ;; switches.  At least around 2018-12-13 https://github.com/magit/magit/issues/3313
+  ;;  :config
+  ;;  (magit-define-popup-switch 'magit-submodule-popup ?r "Recursive" "--recursive")
+  )
 
 (use-package csharp-mode
-  :mode "\.cs$"
-  :config
-  (add-hook 'csharp-mode-hook (lambda ()
+ :mode "\.cs$"
+ :config
+ (add-hook 'csharp-mode-hook (lambda ()
 				(c-set-style "c#")
 				(set-variable 'c-basic-offset 8))))
   
+(use-package csproj-mode
+  :mode "\.props$"
+  :mode "\.targets$")
+
+(use-package cc-mode
+  :mode ("\.inl" . c++-mode))
+
+(use-package yaml-mode)
+
 (defun ak-scroll-down ()
   (interactive)
   (scroll-down 1))
@@ -41,8 +55,8 @@
   (interactive)
   (scroll-up 1))
 
-(global-set-key (kbd "<s-up>") 'ak-scroll-down)
-(global-set-key (kbd "<s-down>") 'ak-scroll-up)
+(global-set-key (kbd "<M-s-up>") 'ak-scroll-down)
+(global-set-key (kbd "<M-s-down>") 'ak-scroll-up)
 
 (global-set-key (kbd "<s-f11>") 'toggle-frame-fullscreen)
 
@@ -68,6 +82,15 @@
   (setq org-default-notes-file (concat org-directory "/xamarin.org"))
   :init
   (add-hook 'org-mode-hook 'flyspell-mode t))
+
+(use-package typescript-mode
+  :mode "\\.tsx$"
+  :init
+  (add-hook 'typescript-mode-hook (lambda ()
+				   (setq indent-tabs-mode nil))))
+
+(use-package cmake-mode)
+  
 
 (put 'narrow-to-region 'disabled nil)
 
