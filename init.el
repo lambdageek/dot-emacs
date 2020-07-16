@@ -3,7 +3,7 @@
 
 (package-initialize)
 
-(setq custom-file "~/.emacs-custom.el")
+(setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
 ;; from use-package README
