@@ -1,6 +1,11 @@
 
+;;; where to get more preferences and things
 (require 'package)
 
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
 
 (setq custom-file "~/.emacs.d/custom.el")
@@ -12,24 +17,71 @@
 (require 'bind-key)                ;; if you use any :bind variant
 
 
+(when (display-graphic-p)
+  (menu-bar-enable-clipboard)
+  (setq select-enable-clipboard t))
+
 (use-package exec-path-from-shell
+  :if window-system
   :config (exec-path-from-shell-initialize))
 
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/")
-	     t)
+(unless (string-equal system-type "darwin")
+  (global-set-key (kbd "s-u") 'revert-buffer))
+
+;(when (file-exists-p "~/lib/twelf/emacs")
+;  (setq load-path (cons "~/lib/twelf/emacs" load-path)))
+
+
+;(when (file-exists-p "~/.local/share/emacs")
+;  (add-to-list 'load-path "~/.local/share/emacs"))
+
+;(setq twelf-font-dark-background t)
+
+;(when (file-exists-p "~/lib/twelf/")
+;  (setq twelf-root "~/lib/twelf/")
+;  (load "twelf-init")
+;  ;(load-library "twelf-font")
+;  )
+
+;(when (file-exists-p "~/.emacs.d/ott/")
+;  (add-to-list 'load-path "~/.emacs.d/ott")
+;  )
+
+;(autoload 'sml-mode "sml-mode" "Major mode for editing ML programs." t)
+
+;(setq auto-mode-alist
+;      (append auto-mode-alist
+;              '(("\\.pop$"    . c-mode) ; not really, but close enough
+;;		("\\.sml$" . sml-mode)
+;;		("\\.sig$" . sml-mode)
+;		("\\.fun$" . sml-mode)
+;;		("\\.ML$" . sml-mode)
+;		)))
+
+;(when (file-exists-p "~/working/gc/lsl/prover/emacs/")
+;  (add-to-list 'load-path "~/working/gc/lsl/prover/emacs/")
+;  (autoload 'lsl-decl-mode "lsl-decl-mode" "Major mode for editing LSL declaration files." t)
+;  (add-to-list 'auto-mode-alist	'("\\.lsl$" . lsl-decl-mode)))
+
+;(setq sml-indent-level 3)
+;(setq sml-compile-command "CM.make \"sources.cm\"")
+
+;; Markdown
+;(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+;(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
+
+(global-set-key (kbd "C-c C-k") 'compile)
+(global-set-key (kbd "C-c C-r") 'remote-compile)
+(global-set-key (kbd "ESC ESC b") 'bury-buffer)
+(global-set-key (kbd "<s-f11>") 'toggle-frame-fullscreen)
+(global-set-key (kbd "<f12>") 'toggle-frame-fullscreen)
+(global-set-key [home] 'beginning-of-buffer)
+(global-set-key [end] 'end-of-buffer)
 
 
 (use-package magit
   :bind (("<f7>" . magit-status)
-	 ("M-<f7>" . magit-file-popup))
-  ;; The below doesn't work because the submodule code in Magit doesn't know about
-  ;; switches.  At least around 2018-12-13 https://github.com/magit/magit/issues/3313
-  ;;  :config
-  ;;  (magit-define-popup-switch 'magit-submodule-popup ?r "Recursive" "--recursive")
-  )
+	 ("s-<f7>" . magit-file-dispatch)))
 
 (use-package csharp-mode
  :mode "\.cs$"
@@ -58,10 +110,19 @@
 (global-set-key (kbd "<M-s-up>") 'ak-scroll-down)
 (global-set-key (kbd "<M-s-down>") 'ak-scroll-up)
 
-(global-set-key (kbd "<s-f11>") 'toggle-frame-fullscreen)
+
+;; (defun fd-add-file-to-recent ()
+;;  (when buffer-file-name
+;;    (start-process "addtorecent.py" nil "addtorecent.py"
+;;                   (concat "file://" buffer-file-name)
+;;                   "text/plain"
+;;                   "Emacs"
+;;                   "emacsclient %F")))
+
+;; (add-hook 'find-file-hook 'fd-add-file-to-recent)
 
 (use-package haskell-mode
-  :config
+  :init
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
@@ -71,15 +132,13 @@
 	      ("C-c C-c" . haskell-process-cabal-build)
 	      ("C-c c" . haskell-process-cabal)))
 
-(use-package ido
-  :init (ido-mode 1))
 
 (use-package org
   :bind (("<f9> a" . org-agenda)
 	 ("<f9> c" . org-capture)
-	 ("<f9> l" . org-store-link))
-  :config
-  (setq org-default-notes-file (concat org-directory "/xamarin.org"))
+	 ("<f9> l" . org-store-link)
+	 ("<f9> [" . org-agenda-file-to-front)
+	 ("<f9> ]" . org-remove-file))
   :init
   (add-hook 'org-mode-hook 'flyspell-mode t))
 
@@ -98,3 +157,4 @@
 (if (and (equal (window-system) 'ns) (getenv "SSH_AUTH_SOCK"))
     (shell-command "ssh-add -A ~/.ssh/id_rsa &> /dev/null")
   (message "ssh-agent not in emacs environment"))
+
