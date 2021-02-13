@@ -81,13 +81,13 @@
 
 (use-package magit
   :bind (("<f7>" . magit-status)
-	 ("s-<f7>" . magit-file-dispatch)))
+	 ("M-<f7>" . magit-dispatch)
+	 ("S-<f7>" . magit-file-dispatch)))
 
 (use-package csharp-mode
  :mode "\.cs$"
  :config
  (add-hook 'csharp-mode-hook (lambda ()
-				(c-set-style "c#")
 				(set-variable 'c-basic-offset 8))))
   
 (use-package csproj-mode
@@ -98,6 +98,11 @@
   :mode ("\.inl" . c++-mode))
 
 (use-package yaml-mode)
+
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("\\.md\\'" . gfm-mode)
+	 ("\\.markdown\'" . markdown-mode)))
 
 (defun ak-scroll-down ()
   (interactive)
@@ -158,3 +163,10 @@
     (shell-command "ssh-add -A ~/.ssh/id_rsa &> /dev/null")
   (message "ssh-agent not in emacs environment"))
 
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
+(use-package editorconfig-domain-specific
+  :config
+  (add-hook 'editorconfig-after-apply-functions 'editorconfig-domain-specific))
