@@ -85,10 +85,10 @@
 	 ("S-<f7>" . magit-file-dispatch)))
 
 (use-package csharp-mode
- :mode "\.cs$"
- :config
- (add-hook 'csharp-mode-hook (lambda ()
-				(set-variable 'c-basic-offset 8))))
+ :mode "\.cs$")
+; :config
+; (add-hook 'csharp-mode-hook (lambda ()
+;				(set-variable 'c-basic-offset 8))))
   
 (use-package csproj-mode
   :mode "\.props$"
@@ -96,6 +96,14 @@
 
 (use-package cc-mode
   :mode ("\.inl" . c++-mode))
+
+(use-package cil-mode
+  :mode "\.il$"
+  :init (add-hook 'cil-mode-hook
+		  (lambda ()
+		    (set (make-local-variable 'cil-mode-indentation-size)
+			 2)))
+  )
 
 (use-package yaml-mode)
 

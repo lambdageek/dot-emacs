@@ -34,6 +34,8 @@
    [default bold shadow italic underline success warning error])
  '(ansi-color-names-vector
    ["#000000" "#a60000" "#005e00" "#813e00" "#0030a6" "#721045" "#00538b" "#ffffff"])
+ '(awesome-tray-mode-line-active-color "#2fafff")
+ '(awesome-tray-mode-line-inactive-color "#323232")
  '(bookmark-default-file "~/.emacs.d/bookmarks")
  '(bookmark-save-flag 1)
  '(browse-url-browser-function 'browse-url-chrome)
@@ -44,10 +46,9 @@
      (awk-mode . "awk")
      (other . "gnu")))
  '(compilation-message-face 'default)
- '(csharp-mode-hook '((lambda nil (setq c-basic-offset 8))))
- '(custom-enabled-themes '(leuven))
+ '(custom-enabled-themes '(leuven-dark))
  '(custom-safe-themes
-   '("039c01abb72985a21f4423dd480ddb998c57d665687786abd4e16c71128ef6ad" "e8e166b16edfb449a41a606d2c14ef0afe7c4548b8d902f5d8af5b89d8563699" "378d52c38b53af751b50c0eba301718a479d7feea5f5ba912d66d7fe9ed64c8f" "07c3a4ab1bc1fcae15baa26b9245ca9e11f4876ad6908df2219ec58d153058c0" "224b4c57e164d6ad2edc4ab1c2a20fbd95ad15e44f8fb2b797001cd39dd59123" "819ab08867ef1adcf10b594c2870c0074caf6a96d0b0d40124b730ff436a7496" "7f6d4aebcc44c264a64e714c3d9d1e903284305fd7e319e7cb73345a9994f5ef" "3f5f69bfa958dcf04066ab2661eb2698252c0e40b8e61104e3162e341cee1eb9" "672bb062b9c92e62d7c370897b131729c3f7fd8e8de71fc00d70c5081c80048c" "85d1dbf2fc0e5d30f236712b831fb24faf6052f3114964fdeadede8e1b329832" "36bab4e2aa8165f538e6d223ee1d2a0ef918ccba09e18c62cf8594467685a3b6" "9a155066ec746201156bb39f7518c1828a73d67742e11271e4f24b7b178c4710" "d5f17ae86464ef63c46ed4cb322703d91e8ed5e718bf5a7beb69dd63352b26b2" "ad9747dc51ca23d1c1382fa9bd5d76e958a5bfe179784989a6a666fe801aadf2" "51897d0e185a9d350a124afac8d5e95cda53e737f3b33befc44ab02f2b03dab1" "cb247cf944eea968aa613a5c40f4cb79f4c05503591cf33e5b4224394dd57e94" "f641bdb1b534a06baa5e05ffdb5039fb265fde2764fbfd9a90b0d23b75f3936b" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "7694bfb46ec19cfc47093783633d8cd4df208d620104910bf5c1c840528a8dd1" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "465be5317c7d95a84e376e095c21242f4f2ad75692ed806dcbb6fe27078260f1" "4e2651395202add98138c5a400573bbbfab95e137fc334e7719b526077c1e9eb" "2ba642d067e5efc0cfc76be49cd3fd5f01271cdfee30325e3dca386a152f3e99" default))
+   '("37768a79b479684b0756dec7c0fc7652082910c37d8863c35b702db3f16000f8" "c5692610c00c749e3cbcea09d61f3ed5dac7a01e0a340f0ec07f35061a716436" "dbec134fb889afe6034edc2dcd881dbfa302eed9823383f795b5c00517e0ea17" "c74807973af861d4997320ca7fce9238bb132d4b12a29cf4cbb59de26c5abfbd" "039c01abb72985a21f4423dd480ddb998c57d665687786abd4e16c71128ef6ad" "e8e166b16edfb449a41a606d2c14ef0afe7c4548b8d902f5d8af5b89d8563699" "378d52c38b53af751b50c0eba301718a479d7feea5f5ba912d66d7fe9ed64c8f" "07c3a4ab1bc1fcae15baa26b9245ca9e11f4876ad6908df2219ec58d153058c0" "224b4c57e164d6ad2edc4ab1c2a20fbd95ad15e44f8fb2b797001cd39dd59123" "819ab08867ef1adcf10b594c2870c0074caf6a96d0b0d40124b730ff436a7496" "7f6d4aebcc44c264a64e714c3d9d1e903284305fd7e319e7cb73345a9994f5ef" "3f5f69bfa958dcf04066ab2661eb2698252c0e40b8e61104e3162e341cee1eb9" "672bb062b9c92e62d7c370897b131729c3f7fd8e8de71fc00d70c5081c80048c" "85d1dbf2fc0e5d30f236712b831fb24faf6052f3114964fdeadede8e1b329832" "36bab4e2aa8165f538e6d223ee1d2a0ef918ccba09e18c62cf8594467685a3b6" "9a155066ec746201156bb39f7518c1828a73d67742e11271e4f24b7b178c4710" "d5f17ae86464ef63c46ed4cb322703d91e8ed5e718bf5a7beb69dd63352b26b2" "ad9747dc51ca23d1c1382fa9bd5d76e958a5bfe179784989a6a666fe801aadf2" "51897d0e185a9d350a124afac8d5e95cda53e737f3b33befc44ab02f2b03dab1" "cb247cf944eea968aa613a5c40f4cb79f4c05503591cf33e5b4224394dd57e94" "f641bdb1b534a06baa5e05ffdb5039fb265fde2764fbfd9a90b0d23b75f3936b" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "7694bfb46ec19cfc47093783633d8cd4df208d620104910bf5c1c840528a8dd1" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "465be5317c7d95a84e376e095c21242f4f2ad75692ed806dcbb6fe27078260f1" "4e2651395202add98138c5a400573bbbfab95e137fc334e7719b526077c1e9eb" "2ba642d067e5efc0cfc76be49cd3fd5f01271cdfee30325e3dca386a152f3e99" default))
  '(default-frame-alist '((width . 110) (height . 48)))
  '(default-input-method "TeX")
  '(desktop-files-not-to-save "\\(\"^/[^/:]*:\\)\\|\\(.diary\\)")
@@ -123,7 +124,8 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(editorconfig editorconfig-domain-specific editorconfig-generate modus-operandi-theme modus-vivendi-theme meson-mode cmake-mode nord-theme csproj-mode yaml-mode dart-mode cargo rust-mode nginx-mode typescript-mode exec-path-from-shell use-package racket-mode org markdown-mode magit leuven-theme haskell-mode csharp-mode borland-blue-theme))
+   '(cil-mode editorconfig editorconfig-domain-specific editorconfig-generate modus-operandi-theme modus-vivendi-theme meson-mode cmake-mode nord-theme csproj-mode yaml-mode dart-mode cargo rust-mode nginx-mode typescript-mode exec-path-from-shell use-package racket-mode org markdown-mode magit leuven-theme haskell-mode csharp-mode borland-blue-theme))
+ '(pdf-view-midnight-colors '("#ffffff" . "#110b11"))
  '(remote-shell-program "/usr/bin/ssh")
  '(safe-local-variable-values
    '((bidi-display-reordering . t)
